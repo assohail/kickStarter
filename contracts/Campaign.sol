@@ -5,16 +5,18 @@ contract Campaign {
     struct Request {
        string description;
        uint value;
-       address recepient;
+       address payable recepient;
        bool complete; 
        uint approvalCount;
        mapping (address => bool) approvals;
     }
 
     Request[] public requests;
-    address public manager;
+    //@ PAYABLE ONLY TO: WRITE DESTRUCT FOR SAVING ETHERS FROM METAMASK
+    address payable public manager;
     uint public minimumContribution;
     mapping (address => bool) public approvers;
+    uint public approversCount;
 
     // declare modifiers above constructor
     modifier restricted() {
@@ -22,40 +24,50 @@ contract Campaign {
         _;
     }
     constructor (uint minimum) {
-        manager = msg.sender;
+        manager = payable(msg.sender);
         minimumContribution = minimum;
     } 
 
-    function constribute() public payable {
+    function contribute() public payable {
         require (msg.value >= minimumContribution);
-        approvers[msg.sender];
+        approvers[msg.sender] = true;
+        approversCount++;
     }
 
-    int[] public numbers;
+    function createRequest (string memory description, uint value, address payable recepient) public restricted {
+        //@TypeError: Type struct Campaign.Request is only valid in storage because it contains a (nested) mapping.
+        // Request storage newRequest; 
+        // the following is giving error
+        // Request({
+        //         description: description,
+        //         value: value,
+        //         recepient: recepient,
+        //         complete: false,
+        //         approvalCount: 0
+        // });
 
-    function createRequest(
-        string memory description, uint value, address recepient
-        ) public restricted {
-            
-        Request storage newRequest = Request({
-            description: description,
-            value: value,
-            recepient: recepient,
-            complete: false
-        });
-        
-        // the two methods are same for struct
-        // Request memory newRequest = Request(description, value, recepient, false);
+        // newRequest.description = description;
+        // newRequest.value = value;
+        // newRequest.recepient = recepient;
+        // newRequest.complete = false;
+        // newRequest.approvalCount = 0;
 
-        // requests.push(newRequest); 
+        //@TypeError: Storage arrays with nested mappings do not support .push().
+        // requests.push(newRequest);
+        // to resolve above error
 
-        numbers.push(1);
-        numbers.push(32);
-        // int[] storage arr = numbers;
-        // changeArray(numbers);
-    }
-    
-    
+        //@TypeError: Data location can only be specified for array, struct or mapping types, but "storage" was given.
+        uint length = requests.length;
+        requests.push();
+        Request storage newRequest_1 = requests[length];
+
+        newRequest_1.description = description;
+        newRequest_1.value = value;
+        newRequest_1.recepient = recepient;
+        newRequest_1.complete = false;
+        newRequest_1.approvalCount = 0;
+        // requests[length++] = newRequest_1;
+    } 
     //@ how to pass array or another refernce type data structure as parameter to function for changing it 
     // function changeArray(int[] storage arr) public pure{
     //     arr[0]= 20;
@@ -63,35 +75,27 @@ contract Campaign {
 
     function approveRequest(uint index) public {
         Request storage request = requests[index];
-        //one contributor should not be able to approve or disapprove a request multiple times
-        
-        //the following method consumes too much gas
-        // bool isApprover = false;
-        // for (uint i=0; i > approvers.length; i++) {
-        //    if (approvers[i] == msg.sender) {
-        //        isApprover = true;
-        //    }
-        // }
-        // require(isApprover);
 
-        require (approvers[msg.sender]);
-
-        // make sure the person has not voted before
-        // for (uint i=0; i< request.approvers.length; i++){
-        //     require (approvers != msg.sender);
-        // }
-
+        require (approvers[msg.sender], "Should be contributor.");
 
         // @have a look
-        require (!requests[index].approvals[msg.sender]);
+        require (!request.approvals[msg.sender], "Request already approved by you.");
 
-        requests[index].approvals[msg.sender] = true;
-        requests[index].approvalCount++;
-
-        
+        request.approvals[msg.sender] = true;
+        request.approvalCount++;
     }
 
-    function finalizeRequest() public {
+    function finalizeRequest(uint index) public payable restricted {
+        Request storage request = requests[index];
+        require(!request.complete, "Request is already finalized.");
+        require(request.approvalCount > (approversCount / 2), "Has not more than 50% approval.");
+        request.complete = true;
+        request.recepient.transfer(request.value);
+    }
+
+    function endCampaign() public restricted {
+        manager.transfer(address(this).balance);
+        selfdestruct(manager);
     }
 
 }
