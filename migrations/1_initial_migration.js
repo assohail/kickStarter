@@ -1,7 +1,7 @@
-const Campaign = artifacts.require("Campaign");
+const CampaignFactory = artifacts.require("./../ethereum/contracts/CampaignFactory");
 // const King = artifacts.require("King");
 
 module.exports = function(deployer) {
-  deployer.deploy(Campaign , 10000);
+  deployer.deploy(CampaignFactory, 10000);
   // deployer.deploy(King);
 };
