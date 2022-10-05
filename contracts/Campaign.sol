@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
-    function deployCampaign(uint minimum) public{
+    function createCampaign(uint minimum) public{
         //@TypeError: Type contract Campaign is not implicitly convertible to expected type address.
         address newCampaign = address(new Campaign(minimum, msg.sender));
         deployedCampaigns.push(newCampaign);
