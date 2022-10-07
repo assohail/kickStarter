@@ -35,17 +35,17 @@ beforeEach(async () => {
 
 describe('Campaigns', () => {
 
-    it('deploys a fatcory and a campaign', () => {
+    it('1: deploys a fatcory and a campaign', () => {
         assert.ok(factory.options.address);
         assert.ok(campaign.options.address);
     });    
 
-    it('marks caller as campaign manager', async () => {
+    it('2: marks caller as campaign manager', async () => {
         const manager = await campaign.methods.manager().call();
         assert.equal(accounts[0], manager);
     });
 
-    it('allows people to contribute money and marks them as approvers', async () => {
+    it('3: allows people to contribute money and marks them as approvers', async () => {
         await campaign.methods.contribute().send({
             value: 200,
             from: accounts[1],
@@ -58,12 +58,12 @@ describe('Campaigns', () => {
     })
 
     //@If a contributor contributes twice, will he be counted twice. This way the approvalCount will be less and the approveRequest may fail.
-    it('campaign has set minimum contribution for the contributors', () => {
+    it('4: campaign has set minimum contribution for the contributors', () => {
         const minContribution = campaign.methods.minimumContribution().call();
         assert(minContribution);
     })
 
-    it('manager has the ability to create a payment request', async () => {
+    it('5: manager has the ability to make a payment request', async () => {
         await campaign.methods.createRequest('Mac', 100, accounts[3])
         .send({
             from: accounts[0],
@@ -74,7 +74,7 @@ describe('Campaigns', () => {
         assert.equal('Mac', request.description);
     })
 
-    it('processes request', async() => {
+    it('6: processes request', async() => {
         await campaign.methods.contribute().send({
             from: accounts[0],
             value: parseFloat(web3.utils.toWei('10', 'ether')),
