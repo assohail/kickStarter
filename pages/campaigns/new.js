@@ -1,24 +1,32 @@
 import React, { Component } from "react";
 import Layout from "../../components/Layout";
-import { Form, Button, Checkbox, Input, Label } from 'semantic-ui-react';
+import { Form, Button, Checkbox, Input, Label, Message} from 'semantic-ui-react';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 
 class CampaignNew extends Component {
     state = {
-      minimumContribution : ''
+      minimumContribution : '',
+      errorMessage: '',
+      loading: ''
     }
     onSubmit = async (event) => {
       event.preventDefault();
-      const accounts = await web3.eth.getAccounts();
-      console.log('Address:' + accounts[0]);
-      await factory.methods.createCampaign(this.state.minimumContribution).send({
-        from:accounts[0],
-        gas: '1000000'
-      })
+      this.setState({loading:true, errorMessage:''});
+      try{
+        const accounts = await web3.eth.getAccounts();
+        await factory.methods.createCampaign(this.state.minimumContribution).send({
+          from:accounts[0],
+          gas: '1000000'
+        })
+      } catch(err) {
+        this.setState({errorMessage: err.message})
+      }
+      this.setState({loading:false});
     }
+
     FormExampleForm = () => (
-        <Form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
             <label>Minimum Contribution</label>
             <Input 
@@ -28,7 +36,8 @@ class CampaignNew extends Component {
               <Label>wei</Label>
             </Input>
           </Form.Field>
-          <Button type='submit'>Create!</Button>
+          <Message error header="You must register before you can do that!" content={this.state.errorMessage} />
+          <Button type='submit' loading={this.state.loading} primary>Create!</Button>
         </Form>
     )
 
