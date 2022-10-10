@@ -5,17 +5,16 @@ import Link from 'next/link';
 export default () => {
   return (
     <Menu style={{ marginTop: '10px' }}>
-      {/* <Link route="/" href={<a>Crowd</a>}>
-        <h1>Hi</h1>
+      <Link route="/" href={'/'}>
         <a className="item">CrowdCoin</a>
-      </Link> */}
-
+      </Link>
+ 
       <Menu.Menu position="right">
-        <Link route="/" href={<a>Crowd</a>}>
+        <Link route="/" href={'/'}>
           <a className="item">Campaigns</a>
         </Link>
 
-        <Link route="/campaigns/new" href={<a>Crowd</a>}>
+        <Link route="/campaigns/new" href={"/campaigns/new"}>
           <a className="item">+</a>
         </Link>
       </Menu.Menu>

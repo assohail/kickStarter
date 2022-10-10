@@ -107,6 +107,20 @@ contract Campaign {
         request.recepient.transfer(request.value);
     }
 
+    function getSummary() public view returns (uint, uint, uint, uint, address) {
+        return (
+            minimumContribution,
+            address(this).balance,
+            requests.length,
+            approversCount,
+            manager 
+        );  
+    }
+
+    function getRequestsCount() public view returns (uint){
+        return requests.length;
+    }
+
     function endCampaign() public restricted {
         manager.transfer(address(this).balance);
         selfdestruct(manager);

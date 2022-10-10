@@ -1,4 +1,8 @@
-const routes = require('next-routes')();
+import route from 'next-routes';
+let routes = route();
 
-export default routes();
+routes.add('/campaigns/:address', '/campaigns/show');
+
+export default routes;
+   
 

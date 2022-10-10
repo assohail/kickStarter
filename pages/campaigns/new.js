@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import { Form, Button, Checkbox, Input, Label, Message} from 'semantic-ui-react';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
+import Router from "next/router";
 
 class CampaignNew extends Component {
     state = {
@@ -19,6 +20,7 @@ class CampaignNew extends Component {
           from:accounts[0],
           gas: '1000000'
         })
+        Router.push('/');
       } catch(err) {
         this.setState({errorMessage: err.message})
       }
