@@ -1,11 +1,12 @@
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-const Web3 = require('web3');
-const compiledFactory = require('./build/contracts/CampaignFactory.json');
+import HDWalletProvider from '@truffle/hdwallet-provider';
+import Web3 from 'web3';
 
 const provider = new HDWalletProvider(
   'corn inmate sorry please chef smooth hour argue erupt meat differ frequent',
   'https://sepolia.infura.io/v3/c24f61d37f764ef0841ed632141835d0'
 );
+import compiledFactory from './build/contracts/CampaignFactory.json' assert { type: "json"}
+
 const web3 = new Web3(provider);
 
 const deploy = async () => {

@@ -1,3 +1,4 @@
 /node_modules
 /.next
 ADDRESS
+deploy.js
