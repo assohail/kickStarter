@@ -1,7 +1,5 @@
 import React, { Component} from 'react';
 import { Form, Input, Message, Button, Label } from 'semantic-ui-react';
-import { Menu } from 'semantic-ui-react';
-import Link from 'next/link';
 import Campaign from '../ethereum/campaign';
 import web3 from '../ethereum/web3';
 import routes from 'next/router';
