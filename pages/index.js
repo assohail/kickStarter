@@ -24,7 +24,8 @@ class CampaignIndex extends Component {
         return <Card.Group items = {items} />
     }
     render() {
-        return <Layout>
+        return (
+                <Layout>
                     <div>
                         <h3>Open Campaigns</h3>
                         <Link href={"/campaigns/new"}>
@@ -32,9 +33,8 @@ class CampaignIndex extends Component {
                         </Link>
                         {this.renderCampaigns()}
                     </div>
-                    
                 </Layout>
-
+            )
     }
 }
 

@@ -8,7 +8,7 @@ class ContributeForm extends Component {
   state = {
     value: '',
     errorMessage: '',
-    loading: ''
+    loading: false
   }
 
   onSubmit = async (event) => {
@@ -34,10 +34,9 @@ class ContributeForm extends Component {
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage} >
           <Form.Field>
             <label>Amount to Contribute</label>
-            <Input labelPosition='right' type='text' value={this.state.value} onChange={event => this.setState( {value: event.target.value })}>
-              <input />
-              <Label>ether</Label>
-            </Input>
+            <Input labelPosition='right' type='text' value={this.state.value} onChange={event => this.setState( { value: event.target.value })}
+            />
+            <Label>ether</Label>
           </Form.Field>
           <Message error header="Value is less to become contributor!" content={this.state.errorMessage} />
           <Button type='submit' loading={this.state.loading} primary>Contribute</Button>
