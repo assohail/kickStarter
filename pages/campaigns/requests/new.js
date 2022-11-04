@@ -67,7 +67,7 @@ class RequestNew extends Component {
                         onChange={event => this.setState({recepient: event.target.value})}
                     />
                 </Form.Field>
-                <Message error header="Oops" content={this.state.errorMessage} />
+                <Message error header="Ohh my God" content={this.state.errorMessage} />
                 <Button type="submit" primary loading={this.state.loading}>Create!</Button>
             </Form>
           </Layout>

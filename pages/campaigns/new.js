@@ -34,12 +34,12 @@ class CampaignNew extends Component {
             <label>Minimum Contribution</label>
             <Input 
               labelPosition='right' type='text' placeholder='Amount' 
-              value={this.state.minimumContribution} onChange={event => this.setState( {minimumContribution: event.target.value })} />
-              {/* <input /> */}
+              value={this.state.minimumContribution} onChange={event => this.setState( {minimumContribution: event.target.value })}>
+              <input />
               <Label>wei</Label>
-            {/* </Input> */}
+            </Input>
           </Form.Field>
-          <Message error header="Oops" content={this.state.errorMessage} />
+          <Message error header="Ohh my God" content={this.state.errorMessage} />
           <Button type='submit' loading={this.state.loading} primary>Create!</Button>
         </Form>
     )
