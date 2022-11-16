@@ -2,3 +2,4 @@
 /.next
 ADDRESS
 deploy.js
+.env
