@@ -7,6 +7,9 @@ Interested in learning?
 > git clone https://github.com/assohail/kickStarter.git
 > cd kickStarter
 > npm install
+* to run locally
+> npm run dev
+* for cloud
 > npm start
 ```
 
