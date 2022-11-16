@@ -12,7 +12,6 @@
   "scripts": {
     "test": "mocha",
     "dev": "node server.js",
-    "start": "next start -p $PORT"
   },
   "repository": {
     "type": "git",
