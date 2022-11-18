@@ -22,7 +22,7 @@ Interested in learning?
 - [x] campaigns/[address] View Requests Btn
 - [x] campaigns/new Input Wei styling
 - [x] Refactor
-- [ ] Deployment
+- [ ] Cloud Deployment 
 
 ### Used Packages
 Here is the list of packages and their purpose, used to build the app. Starter packages are not listed here.
