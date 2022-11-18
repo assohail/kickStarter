@@ -21,7 +21,8 @@ Interested in learning?
 - [x] campaigns/[address] page: input ether styling in Contribute Form
 - [x] campaigns/[address] View Requests Btn
 - [x] campaigns/new Input Wei styling
-- [ ] Refactor
+- [x] Refactor
+- [ ] Deployment
 
 ### Used Packages
 Here is the list of packages and their purpose, used to build the app. Starter packages are not listed here.
