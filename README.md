@@ -1,7 +1,18 @@
-# Kick Starter
+# [Kick Starter](https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide/)
 
-Interested in learning?
+Kick Satrter Implementation by Ethereum Blockchain, Removing the Loopholes that were present in Kickstarter and providing new transparent Platform for investors who want to support the startup projects by their funding. 
 
+### Tools, Languages, Frameworks
+* Truffle 
+* Ganache
+* Next.js
+* React
+* JS
+* Solidity
+* Infura 
+* MetaMask
+* Web3
+* Node
 ### Getting Started
 ```
 > git clone https://github.com/assohail/kickStarter.git
@@ -12,6 +23,8 @@ Interested in learning?
 * for cloud
 > npm start
 ```
+### Url
+[Localhost: 127.0.0.1:3000](127.0.0.1:3000)
 
 ### For Contract Deployment
 * deploy through ganache locally for getting .json
@@ -21,7 +34,8 @@ Interested in learning?
 - [x] campaigns/[address] page: input ether styling in Contribute Form
 - [x] campaigns/[address] View Requests Btn
 - [x] campaigns/new Input Wei styling
-- [ ] Refactor
+- [x] Refactor
+- [ ] Cloud Deployment 
 
 ### Used Packages
 Here is the list of packages and their purpose, used to build the app. Starter packages are not listed here.
