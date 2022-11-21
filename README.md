@@ -24,7 +24,7 @@ Kick Satrter Implementation by Ethereum Blockchain, Removing the Loopholes that 
 > npm start
 ```
 ### Url
-[Localhost](127.0.0.1:3000)
+[Localhost: 127.0.0.1:3000](127.0.0.1:3000)
 
 ### For Contract Deployment
 * deploy through ganache locally for getting .json
