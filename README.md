@@ -1,6 +1,17 @@
 # Kick Starter
 
-Interested in learning?
+Kick Satrter Implementation by Ethereum Blockchain, Removing the Loopholes that were present in Kickstarter and providing new transparent Platform for investors who want to support the startup projects by their funding. 
+
+### Tools, Languages, Frameworks
+* Truffle 
+* Ganache
+* Next.js
+* React
+* JS
+* Solidity
+* Infura 
+* MetaMask
+* Web3
 
 ### Getting Started
 ```
