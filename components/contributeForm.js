@@ -14,6 +14,7 @@ class ContributeForm extends Component {
   onSubmit = async (event) => {
     event.preventDefault();
     const campaign = await Campaign(this.props.address);
+    console.log('add: '+ this.props.address+ ' typeOf: '+ typeof(this.props.address));
     this.setState({loading:true, errorMessage:''});
     try{
       const accounts = await web3.eth.getAccounts();
@@ -40,6 +41,7 @@ class ContributeForm extends Component {
             </Input>
           </Form.Field>
           <Message error header="Ohh my God" content={this.state.errorMessage} />
+
           <Button type='submit' loading={this.state.loading} primary>Contribute</Button>
         </Form>
       )

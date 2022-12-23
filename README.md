@@ -36,6 +36,7 @@ Kick Satrter Implementation by Ethereum Blockchain, Removing the Loopholes that 
 - [x] campaigns/new Input Wei styling
 - [x] Refactor
 - [ ] Cloud Deployment 
+- [ ] main branch commit conflict issue
 
 ### Used Packages
 Here is the list of packages and their purpose, used to build the app. Starter packages are not listed here.
